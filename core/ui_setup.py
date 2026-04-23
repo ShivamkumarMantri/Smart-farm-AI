@@ -337,12 +337,12 @@ def render_navbar():
                 SmartFarm AI
             </div>
             <div class="sf-nav-links">
-                <a href="#">Home</a>
-                <a href="#">Diagnosis</a>
-                <a href="#">History</a>
-                <a href="#">Insights</a>
+                <a href="/" target="_self">Home</a>
+                <a href="/1_%F0%9F%A9%BA_Diagnosis_Tool" target="_self">Diagnosis</a>
+                <a href="/2_%F0%9F%93%8A_Farm_History" target="_self">History</a>
+                <a href="/2_%F0%9F%93%8A_Farm_History" target="_self">Insights</a>
             </div>
-            <a class="sf-nav-cta" href="#">⚡ Start Diagnosis</a>
+            <a class="sf-nav-cta" href="/1_%F0%9F%A9%BA_Diagnosis_Tool" target="_self">⚡ Start Diagnosis</a>
         </nav>
     """, unsafe_allow_html=True)
 
@@ -357,32 +357,32 @@ def render_footer():
                 </div>
                 <div>
                     <div class="sf-footer-col-title">Product</div>
-                    <a class="sf-footer-link" href="#">Diagnosis Tool</a>
-                    <a class="sf-footer-link" href="#">Farm Analytics</a>
-                    <a class="sf-footer-link" href="#">AI Features</a>
-                    <a class="sf-footer-link" href="#">Roadmap</a>
+                    <a class="sf-footer-link" href="/1_%F0%9F%A9%BA_Diagnosis_Tool" target="_self">🩺 Diagnosis Tool</a>
+                    <a class="sf-footer-link" href="/2_%F0%9F%93%8A_Farm_History" target="_self">📊 Farm Analytics</a>
+                    <a class="sf-footer-link" href="/" target="_self">🏠 Home</a>
+                    <a class="sf-footer-link" href="/2_%F0%9F%93%8A_Farm_History" target="_self">📈 Insights</a>
                 </div>
                 <div>
                     <div class="sf-footer-col-title">Resources</div>
-                    <a class="sf-footer-link" href="#">Documentation</a>
-                    <a class="sf-footer-link" href="#">API Reference</a>
-                    <a class="sf-footer-link" href="#">Blog</a>
-                    <a class="sf-footer-link" href="#">Support</a>
+                    <a class="sf-footer-link" href="https://github.com/ShivamkumarMantri/Smart-farm-AI" target="_blank">📖 GitHub README</a>
+                    <a class="sf-footer-link" href="https://github.com/ShivamkumarMantri/Smart-farm-AI/blob/main/README.md" target="_blank">📄 Documentation</a>
+                    <a class="sf-footer-link" href="https://open-meteo.com" target="_blank">🌦️ Weather API</a>
+                    <a class="sf-footer-link" href="https://streamlit.io" target="_blank">⚡ Streamlit</a>
                 </div>
                 <div>
-                    <div class="sf-footer-col-title">Company</div>
-                    <a class="sf-footer-link" href="#">About</a>
-                    <a class="sf-footer-link" href="#">Team</a>
-                    <a class="sf-footer-link" href="#">Contact</a>
-                    <a class="sf-footer-link" href="#">Privacy</a>
+                    <div class="sf-footer-col-title">Project</div>
+                    <a class="sf-footer-link" href="/" target="_self">About SmartFarm</a>
+                    <a class="sf-footer-link" href="https://github.com/ShivamkumarMantri" target="_blank">GitHub Profile</a>
+                    <a class="sf-footer-link" href="https://github.com/ShivamkumarMantri/Smart-farm-AI/issues" target="_blank">Report an Issue</a>
+                    <a class="sf-footer-link" href="https://github.com/ShivamkumarMantri/Smart-farm-AI" target="_blank">Star on GitHub ⭐</a>
                 </div>
             </div>
             <div class="sf-footer-bottom">
                 <div>© 2025–26 SmartFarm AI. Empowering sustainable agriculture with AI.</div>
                 <div class="sf-footer-socials">
-                    <a href="#">GitHub</a>
-                    <a href="#">Twitter</a>
-                    <a href="#">LinkedIn</a>
+                    <a href="https://github.com/ShivamkumarMantri/Smart-farm-AI" target="_blank">GitHub</a>
+                    <a href="/" target="_self">Home</a>
+                    <a href="/1_%F0%9F%A9%BA_Diagnosis_Tool" target="_self">Diagnose Now</a>
                 </div>
             </div>
         </div>
