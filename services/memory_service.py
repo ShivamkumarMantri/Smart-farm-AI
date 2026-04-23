@@ -73,6 +73,8 @@ def clear_chroma_runtime(memory_db_dir: str | None = None):
             
     logger.info("🧹 Memory database cleared.")
 
+from functools import lru_cache
+
 # ============================================================
 # Memory Service
 # ============================================================
@@ -80,6 +82,11 @@ class MemoryService:
     """
     Focused interface for SmartFarm AI's result caching.
     """
+
+    @staticmethod
+    @lru_cache(maxsize=1)
+    def get_instance() -> 'MemoryService':
+        return MemoryService()
 
     def __init__(self, threshold: float = 0.9):
         self.threshold = threshold

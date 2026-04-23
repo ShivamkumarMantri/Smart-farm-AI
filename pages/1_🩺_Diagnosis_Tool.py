@@ -25,7 +25,7 @@ force_ai = st.sidebar.checkbox("🔍 Force Advanced Analysis", help="Enable this
 if st.sidebar.button("🧹 Reset System Cache"):
     from services.memory_service import MemoryService
     try:
-        ms = MemoryService()
+        ms = MemoryService.get_instance()
         ms.reset_memory()
         st.sidebar.success("✅ Cache cleared successfully!")
         st.toast("System reset. Next analysis will be fresh.")

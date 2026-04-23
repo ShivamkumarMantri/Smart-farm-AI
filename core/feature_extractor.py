@@ -88,12 +88,12 @@ class FeatureExtractor:
         self._load_models()
 
     def _load_models(self):
-    
         import numpy as np
-        from tensorflow.keras.models import load_model, Model
+        from tensorflow.keras.models import Model
+        from core.predict import load_cnn_model
 
-        logger.info(f"Loading CNN model for embedding extraction: {self.model_path}")
-        self._base_model = load_model(self.model_path)
+        logger.info(f"Retrieving CNN model for embedding extraction from cache.")
+        self._base_model = load_cnn_model()
 
         # 🩹 PATCH: Handle Sequential models with no defined input
         try:

@@ -51,7 +51,7 @@ def hybrid_predict(image_path: str, user_crop: Optional[str] = None, force_gemin
     if not path.exists():
         return _build_response("error", "⚠️ Image not found. Please upload a valid leaf photo.")
 
-    memory = MemoryService()
+    memory = MemoryService.get_instance()
     
     # 1. Check Image Cache First (Bypass if forced)
     if not force_gemini:
