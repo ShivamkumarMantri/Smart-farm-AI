@@ -41,16 +41,6 @@ from ai_modules.prompt_templates import (
 )
 
 # ------------------------------------------------------------
-# Setup Gemini
-# ------------------------------------------------------------
-try:
-    genai.configure(api_key=os.getenv("GOOGLE_API_KEY", "YOUR_GEMINI_API_KEY_HERE"))
-    google_model = genai.GenerativeModel("gemini-2.5-flash")
-except Exception as e:
-    google_model = None
-    print(f"⚠️ Gemini model initialization failed: {e}")
-
-# ------------------------------------------------------------
 # Optional LLM libraries
 # ------------------------------------------------------------
 try:
@@ -65,11 +55,26 @@ logger.setLevel(logging.INFO)
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 GROK_API_KEY = os.getenv("GROK_API_KEY")
 
-if GEMINI_API_KEY:
-    genai.configure(api_key=GEMINI_API_KEY)
-    logger.info("✅ Gemini Vision API configured.")
-else:
-    logger.warning("⚠️ Gemini Vision API not configured. Using mock responses.")
+_GOOGLE_MODEL = None
+_GENAI_CONFIGURED = False
+
+def _get_google_model():
+    global _GOOGLE_MODEL, _GENAI_CONFIGURED
+    if not _GENAI_CONFIGURED:
+        try:
+            import google.generativeai as genai
+            if GEMINI_API_KEY:
+                genai.configure(api_key=GEMINI_API_KEY)
+                logger.info("✅ Gemini Vision API configured.")
+            else:
+                genai.configure(api_key=os.getenv("GOOGLE_API_KEY", "YOUR_GEMINI_API_KEY_HERE"))
+                logger.warning("⚠️ Gemini Vision API not configured. Using mock responses.")
+            _GOOGLE_MODEL = genai.GenerativeModel("gemini-2.5-flash")
+            _GENAI_CONFIGURED = True
+        except Exception as e:
+            logger.warning(f"⚠️ Gemini model initialization failed: {e}")
+            _GENAI_CONFIGURED = True
+    return _GOOGLE_MODEL
 
 
 # ============================================================
@@ -125,6 +130,10 @@ def gemini_vision_response(image_path: str, user_crop: str = None) -> dict:
             image = image.resize((1024, 1024), Image.Resampling.LANCZOS)
 
         prompt = vision_analysis_prompt(user_crop)
+
+        google_model = _get_google_model()
+        if not google_model:
+            raise RuntimeError("Gemini Vision model is not configured.")
 
         # ✅ Single Gemini call for both crop + disease
         response = google_model.generate_content([prompt, image])

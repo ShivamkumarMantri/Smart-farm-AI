@@ -31,13 +31,8 @@ from PIL import Image
 
 # Lazy import tensorflow since it can be heavy
 # Lazy import tensorflow since it can be heavy
-try:
-    import tensorflow as tf
-    from tensorflow.keras.models import load_model, Model
-except:
-    tf = None
-    load_model = None
-    Model = None
+# TensorFlow will be imported locally inside methods that require it.
+tf = None
 
 
 # Try to import project preprocessing helper if available
@@ -66,9 +61,6 @@ class FeatureExtractor:
         :param embedding_layer_index: If provided, will use model.layers[embedding_layer_index].output as embedding.
                                       Otherwise, the extractor will try to choose the penultimate layer.
         """
-        if tf is None:
-            raise RuntimeError("TensorFlow is required by FeatureExtractor but could not be imported.")
-
         # Resolve default path relative to project root
         if model_path is None:
             # file is at core/feature_extractor.py -> project root is one parent up

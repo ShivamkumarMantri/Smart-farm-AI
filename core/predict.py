@@ -23,7 +23,6 @@ from typing import Union, Tuple, List
 
 import numpy as np
 from PIL import Image
-from tensorflow.keras.models import load_model
 
 # Try to use project utils
 try:
@@ -47,6 +46,7 @@ CLASS_INDICES_PATH = Path(__file__).resolve().parents[1] / "model" / "class_indi
 @lru_cache(maxsize=1)
 def load_cnn_model():
     """Load and cache the CNN model (once per session)."""
+    from tensorflow.keras.models import load_model
     if not MODEL_PATH.exists():
         raise FileNotFoundError(f"Model file not found: {MODEL_PATH}")
     logger.info("Loading SmartFarm CNN model from %s", MODEL_PATH)

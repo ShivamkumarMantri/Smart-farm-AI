@@ -19,7 +19,6 @@ from pathlib import Path
 from datetime import datetime
 from typing import Optional, Dict, Any, List
 
-import chromadb
 from core.feature_extractor import FeatureExtractor
 
 # ------------------------------------------------------------
@@ -97,6 +96,7 @@ class MemoryService:
 
     def _init_chromadb(self):
         try:
+            import chromadb
             chroma_path = Path(__file__).resolve().parents[1] / "data" / "memory_db"
             self.client = chromadb.PersistentClient(path=str(chroma_path))
             self.collection = self.client.get_or_create_collection("image_memory")
