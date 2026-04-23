@@ -13,9 +13,8 @@ def inject_global_styles():
         }
         .main .block-container {
             background:
-                radial-gradient(ellipse 800px 500px at 10% -5%,  rgba(16,185,129,0.09) 0%, transparent 65%),
-                radial-gradient(ellipse 600px 400px at 90% 90%, rgba(6,182,212,0.07) 0%, transparent 65%),
-                radial-gradient(ellipse 400px 300px at 50% 50%, rgba(139,92,246,0.03) 0%, transparent 65%),
+                radial-gradient(ellipse 700px 400px at 10% -5%,  rgba(16,185,129,0.045) 0%, transparent 70%),
+                radial-gradient(ellipse 500px 350px at 90% 90%, rgba(6,182,212,0.03) 0%, transparent 70%),
                 transparent !important;
             padding-top: 0 !important;
             max-width: 1140px !important;

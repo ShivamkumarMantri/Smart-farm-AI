@@ -14,16 +14,22 @@ st.markdown("""
         Upload a photo of your crop leaf. Our AI pipeline detects diseases, analyzes symptoms,
         and delivers a complete treatment plan — in under 10 seconds.
     </div>
-    <div class="sf-hero-btns">
-        <a class="sf-btn-primary" href="#">📤 Upload Image</a>
-        <a class="sf-btn-secondary" href="#">Explore Features →</a>
-    </div>
 </div>
 """, unsafe_allow_html=True)
 
+# ── Hero CTA Buttons (real Streamlit buttons) ─────────────────
+btn1, btn2, _ = st.columns([1.4, 1.4, 2])
+with btn1:
+    if st.button("📤 Upload & Diagnose", type="primary", use_container_width=True):
+        st.switch_page("pages/1_🩺_Diagnosis_Tool.py")
+with btn2:
+    if st.button("📊 View Farm History", use_container_width=True):
+        st.switch_page("pages/2_📊_Farm_History.py")
+
+st.markdown("<div style='height:36px'></div>", unsafe_allow_html=True)
+
 # ── TRUST STATS ───────────────────────────────────────────────
-st.markdown("<div style='height:20px'></div>", unsafe_allow_html=True)
-c1,c2,c3,c4 = st.columns(4)
+c1, c2, c3, c4 = st.columns(4)
 for col, num, label in [
     (c1, "38+",   "Diseases Detected"),
     (c2, "94.2%", "CNN Accuracy"),
@@ -43,17 +49,17 @@ st.markdown("<div style='height:56px'></div>", unsafe_allow_html=True)
 st.markdown("""
 <div class="sf-section-label">Features</div>
 <div class="sf-section-heading">Everything you need to protect your crops</div>
-<div class="sf-section-sub">From detection to treatment, SmartFarm AI handles the entire diagnostic pipeline.</div>
+<div class="sf-section-sub">From detection to treatment, SmartFarm AI handles the full diagnostic pipeline automatically.</div>
 """, unsafe_allow_html=True)
 
-f1,f2 = st.columns(2)
+f1, f2 = st.columns(2)
 features = [
-    ("green",  "🧠", "Disease Detection",         "Custom-trained CNN analyzes leaf patterns to detect 38+ plant diseases with up to 94% accuracy."),
-    ("teal",   "👁️", "AI Vision Analysis",         "Gemini Vision provides deep pathological analysis for complex cases, estimating severity and spread."),
-    ("violet", "📊", "Farm History Tracking",      "ChromaDB vector memory stores every diagnosis, enabling long-term trend tracking across your farm."),
-    ("amber",  "💡", "Smart Recommendations",      "Grok LLM synthesizes all data into plain-language, actionable treatment plans tailored for farmers."),
+    ("green",  "🧠", "Disease Detection",      "Custom-trained CNN analyzes leaf patterns to detect 38+ plant diseases with up to 94% accuracy."),
+    ("teal",   "👁️", "AI Vision Analysis",      "Gemini Vision provides deep pathological analysis for complex cases, estimating severity and spread."),
+    ("violet", "📊", "Farm History Tracking",   "ChromaDB vector memory stores every diagnosis, enabling long-term trend tracking across your farm."),
+    ("amber",  "💡", "Smart Recommendations",   "Grok LLM synthesizes all data into plain-language, actionable treatment plans tailored for farmers."),
 ]
-for i,(col,(color,icon,title,body)) in enumerate(zip([f1,f2,f1,f2], features)):
+for i, (col, (color, icon, title, body)) in enumerate(zip([f1, f2, f1, f2], features)):
     with col:
         st.markdown(f"""
         <div class="sf-card">
@@ -65,7 +71,7 @@ for i,(col,(color,icon,title,body)) in enumerate(zip([f1,f2,f1,f2], features)):
 st.markdown("<div style='height:56px'></div>", unsafe_allow_html=True)
 
 # ── HOW IT WORKS ──────────────────────────────────────────────
-hw_col, _ = st.columns([3,2])
+hw_col, _ = st.columns([3, 2])
 with hw_col:
     st.markdown("""
     <div class="sf-section-label">How It Works</div>
@@ -78,7 +84,7 @@ with hw_col:
         ("02", "🧠 Analyze", "Our 3-stage AI pipeline — CNN → Vision → LLM — processes the image in seconds."),
         ("03", "📋 Results", "Receive a full diagnosis: disease name, confidence score, and step-by-step treatment plan."),
     ]
-    for num,title,body in steps:
+    for num, title, body in steps:
         st.markdown(f"""
         <div class="sf-step">
             <div class="sf-step-num">{num}</div>
@@ -90,20 +96,20 @@ with hw_col:
 
 st.markdown("<div style='height:56px'></div>", unsafe_allow_html=True)
 
-# ── TRUST SECTION ─────────────────────────────────────────────
+# ── TECHNOLOGY TRUST ──────────────────────────────────────────
 st.markdown("""
 <div class="sf-section-label">Trusted Technology</div>
 <div class="sf-section-heading">Built on world-class AI infrastructure</div>
-<div class="sf-section-sub">SmartFarm AI integrates the most advanced models available.</div>
+<div class="sf-section-sub">SmartFarm AI integrates the most advanced models available today.</div>
 """, unsafe_allow_html=True)
 
-t1,t2,t3 = st.columns(3)
+t1, t2, t3 = st.columns(3)
 trust = [
-    ("🧠", "TensorFlow CNN",     "Custom-trained convolutional neural network with optimized architecture for plant pathology."),
-    ("👁️", "Google Gemini",      "State-of-the-art multimodal AI for advanced image understanding and symptom description."),
-    ("💬", "Grok (Groq LLM)",    "Fast, intelligent language model generating expert-level, farmer-friendly treatment advice."),
+    ("🧠", "TensorFlow CNN",  "Custom-trained convolutional neural network optimized for plant pathology."),
+    ("👁️", "Google Gemini",   "State-of-the-art multimodal AI for advanced image understanding."),
+    ("💬", "Grok LLM",        "Fast language model generating expert-level, farmer-friendly treatment plans."),
 ]
-for col,(icon,title,body) in zip([t1,t2,t3], trust):
+for col, (icon, title, body) in zip([t1, t2, t3], trust):
     with col:
         st.markdown(f"""
         <div class="sf-card" style="text-align:center">
@@ -112,12 +118,30 @@ for col,(icon,title,body) in zip([t1,t2,t3], trust):
             <div class="sf-card-body" style="text-align:center">{body}</div>
         </div>""", unsafe_allow_html=True)
 
+st.markdown("<div style='height:24px'></div>", unsafe_allow_html=True)
+
+# ── CTA BANNER ────────────────────────────────────────────────
+st.markdown("""
+<div class="sf-card" style="text-align:center;padding:40px;background:rgba(16,185,129,0.04);border-color:rgba(16,185,129,0.15)">
+    <div class="sf-section-heading" style="margin-bottom:8px">Ready to diagnose your crops?</div>
+    <div class="sf-section-sub" style="margin-bottom:0">Upload a photo and get your AI diagnosis in seconds.</div>
+</div>
+""", unsafe_allow_html=True)
+
+st.markdown("<div style='height:8px'></div>", unsafe_allow_html=True)
+_, cta_col, _ = st.columns([2, 3, 2])
+with cta_col:
+    if st.button("🩺 Start Diagnosis Now", type="primary", use_container_width=True):
+        st.switch_page("pages/1_🩺_Diagnosis_Tool.py")
+
 # ── SIDEBAR ───────────────────────────────────────────────────
 st.sidebar.markdown("### 🌾 SmartFarm AI")
 st.sidebar.markdown("<span style='color:#475569;font-size:0.85rem'>AI-powered plant disease detection</span>", unsafe_allow_html=True)
 st.sidebar.divider()
 if st.sidebar.button("🩺 Go to Diagnosis Tool", use_container_width=True):
     st.switch_page("pages/1_🩺_Diagnosis_Tool.py")
+if st.sidebar.button("📊 Farm Analytics", use_container_width=True):
+    st.switch_page("pages/2_📊_Farm_History.py")
 st.sidebar.divider()
 st.sidebar.markdown("<span style='color:#334155;font-size:0.75rem'>Version 3.0 · Stable Release</span>", unsafe_allow_html=True)
 
