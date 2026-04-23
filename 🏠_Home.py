@@ -1,94 +1,124 @@
 import streamlit as st
 from core.ui_setup import initialize_ui, render_footer
-
 initialize_ui()
 
-# ─── Hero ─────────────────────────────────────────────────────
-st.markdown('<div class="main-header" style="font-size:2.4rem;font-weight:900;background:linear-gradient(90deg,#11B27B,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">🌾 SmartFarm AI</div>', unsafe_allow_html=True)
-st.markdown('<p style="color:#64748b;font-size:1.05rem;margin-bottom:24px;">Advanced Pathological Intelligence for Sustainable Farming</p>', unsafe_allow_html=True)
-
-col_hero1, col_hero2 = st.columns([2, 1])
-
-with col_hero1:
-    st.image(
-        "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&w=800&q=80",
-        use_column_width=True,
-    )
-
-with col_hero2:
-    st.markdown("### 🚀 Our Mission")
-    st.write("""
-    SmartFarm AI leverages state-of-the-art **Deep Learning** and **Advanced AI Vision** to 
-    provide farmers with instant, accurate, and actionable crop health diagnostics. 
-
-    By identifying diseases early, we help **reduce crop loss** and minimize the use of harmful chemicals.
-    """)
-    if st.button("🌱 Get Started Now", type="primary", use_container_width=True):
-        st.switch_page("pages/1_🩺_Diagnosis_Tool.py")
-
-st.divider()
-
-# ─── Stats Strip ──────────────────────────────────────────────
-s1, s2, s3, s4 = st.columns(4)
-s1.metric("🌿 Diseases Detected", "38+", delta="Growing")
-s2.metric("🎯 Average Accuracy", "94.2%", delta="↑ 2.1%")
-s3.metric("⚡ Avg Response Time", "< 3s")
-s4.metric("🚀 AI Pipeline Stages", "3")
-
-st.divider()
-
-# ─── Technology Stack ─────────────────────────────────────────
-st.header("🔬 Our Technology Stack")
-col1, col2, col3 = st.columns(3)
-
-with col1:
-    st.markdown("""
-    <div class="glass-card">
-        <h3>🧠 Deep Learning (CNN)</h3>
-        <p>A custom-trained Convolutional Neural Network analyzes leaf patterns to identify common diseases with high precision.</p>
+# ── HERO ─────────────────────────────────────────────────────
+st.markdown("""
+<div class="sf-hero">
+    <div class="sf-hero-tag"><div class="sf-hero-tag-dot"></div> Now with Gemini Vision + Grok LLM</div>
+    <div class="sf-hero-heading">
+        <span class="white">AI-Powered</span><br>
+        <span class="grad">Crop Diagnosis</span>
     </div>
+    <div class="sf-hero-sub">
+        Upload a photo of your crop leaf. Our AI pipeline detects diseases, analyzes symptoms,
+        and delivers a complete treatment plan — in under 10 seconds.
+    </div>
+    <div class="sf-hero-btns">
+        <a class="sf-btn-primary" href="#">📤 Upload Image</a>
+        <a class="sf-btn-secondary" href="#">Explore Features →</a>
+    </div>
+</div>
+""", unsafe_allow_html=True)
+
+# ── TRUST STATS ───────────────────────────────────────────────
+st.markdown("<div style='height:20px'></div>", unsafe_allow_html=True)
+c1,c2,c3,c4 = st.columns(4)
+for col, num, label in [
+    (c1, "38+",   "Diseases Detected"),
+    (c2, "94.2%", "CNN Accuracy"),
+    (c3, "<3s",   "Avg Response Time"),
+    (c4, "3",     "AI Pipeline Stages"),
+]:
+    with col:
+        st.markdown(f"""
+        <div class="sf-stat">
+            <div class="sf-stat-num">{num}</div>
+            <div class="sf-stat-label">{label}</div>
+        </div>""", unsafe_allow_html=True)
+
+st.markdown("<div style='height:56px'></div>", unsafe_allow_html=True)
+
+# ── FEATURES ──────────────────────────────────────────────────
+st.markdown("""
+<div class="sf-section-label">Features</div>
+<div class="sf-section-heading">Everything you need to protect your crops</div>
+<div class="sf-section-sub">From detection to treatment, SmartFarm AI handles the entire diagnostic pipeline.</div>
+""", unsafe_allow_html=True)
+
+f1,f2 = st.columns(2)
+features = [
+    ("green",  "🧠", "Disease Detection",         "Custom-trained CNN analyzes leaf patterns to detect 38+ plant diseases with up to 94% accuracy."),
+    ("teal",   "👁️", "AI Vision Analysis",         "Gemini Vision provides deep pathological analysis for complex cases, estimating severity and spread."),
+    ("violet", "📊", "Farm History Tracking",      "ChromaDB vector memory stores every diagnosis, enabling long-term trend tracking across your farm."),
+    ("amber",  "💡", "Smart Recommendations",      "Grok LLM synthesizes all data into plain-language, actionable treatment plans tailored for farmers."),
+]
+for i,(col,(color,icon,title,body)) in enumerate(zip([f1,f2,f1,f2], features)):
+    with col:
+        st.markdown(f"""
+        <div class="sf-card">
+            <div class="sf-card-icon {color}">{icon}</div>
+            <div class="sf-card-title">{title}</div>
+            <div class="sf-card-body">{body}</div>
+        </div>""", unsafe_allow_html=True)
+
+st.markdown("<div style='height:56px'></div>", unsafe_allow_html=True)
+
+# ── HOW IT WORKS ──────────────────────────────────────────────
+hw_col, _ = st.columns([3,2])
+with hw_col:
+    st.markdown("""
+    <div class="sf-section-label">How It Works</div>
+    <div class="sf-section-heading">Three steps to a healthier farm</div>
+    <div class="sf-section-sub" style="margin-bottom:28px">Our AI pipeline runs automatically. No expertise required.</div>
     """, unsafe_allow_html=True)
 
-with col2:
-    st.markdown("""
-    <div class="glass-card">
-        <h3>👁️ Advanced AI Vision</h3>
-        <p>For complex cases, Gemini Vision provides deep pathological analysis to describe symptoms and estimate severity.</p>
-    </div>
-    """, unsafe_allow_html=True)
+    steps = [
+        ("01", "📤 Upload",  "Take a clear photo of the affected leaf and upload it via drag-and-drop or file picker."),
+        ("02", "🧠 Analyze", "Our 3-stage AI pipeline — CNN → Vision → LLM — processes the image in seconds."),
+        ("03", "📋 Results", "Receive a full diagnosis: disease name, confidence score, and step-by-step treatment plan."),
+    ]
+    for num,title,body in steps:
+        st.markdown(f"""
+        <div class="sf-step">
+            <div class="sf-step-num">{num}</div>
+            <div>
+                <div class="sf-step-title">{title}</div>
+                <div class="sf-step-body">{body}</div>
+            </div>
+        </div>""", unsafe_allow_html=True)
 
-with col3:
-    st.markdown("""
-    <div class="glass-card">
-        <h3>💾 Long-Term Memory</h3>
-        <p>ChromaDB vector database allows the system to recall past diagnoses and improve accuracy over time.</p>
-    </div>
-    """, unsafe_allow_html=True)
+st.markdown("<div style='height:56px'></div>", unsafe_allow_html=True)
 
-st.divider()
+# ── TRUST SECTION ─────────────────────────────────────────────
+st.markdown("""
+<div class="sf-section-label">Trusted Technology</div>
+<div class="sf-section-heading">Built on world-class AI infrastructure</div>
+<div class="sf-section-sub">SmartFarm AI integrates the most advanced models available.</div>
+""", unsafe_allow_html=True)
 
-# ─── How It Works ─────────────────────────────────────────────
-st.header("🛠️ How It Works")
-hw1, hw2, hw3 = st.columns(3)
-with hw1:
-    st.markdown("""<div class="glass-card" style="text-align:center">
-        <h2 style="font-size:2rem">📤</h2><h3>1. Upload</h3>
-        <p>Take a clear photo of the affected plant leaf and upload it.</p></div>""", unsafe_allow_html=True)
-with hw2:
-    st.markdown("""<div class="glass-card" style="text-align:center">
-        <h2 style="font-size:2rem">🧠</h2><h3>2. Analyze</h3>
-        <p>Our AI pipeline processes the image through CNN → Vision → LLM.</p></div>""", unsafe_allow_html=True)
-with hw3:
-    st.markdown("""<div class="glass-card" style="text-align:center">
-        <h2 style="font-size:2rem">📋</h2><h3>3. Report</h3>
-        <p>Receive a detailed treatment plan and prevention tips instantly.</p></div>""", unsafe_allow_html=True)
+t1,t2,t3 = st.columns(3)
+trust = [
+    ("🧠", "TensorFlow CNN",     "Custom-trained convolutional neural network with optimized architecture for plant pathology."),
+    ("👁️", "Google Gemini",      "State-of-the-art multimodal AI for advanced image understanding and symptom description."),
+    ("💬", "Grok (Groq LLM)",    "Fast, intelligent language model generating expert-level, farmer-friendly treatment advice."),
+]
+for col,(icon,title,body) in zip([t1,t2,t3], trust):
+    with col:
+        st.markdown(f"""
+        <div class="sf-card" style="text-align:center">
+            <div style="font-size:2rem;margin-bottom:12px">{icon}</div>
+            <div class="sf-card-title" style="text-align:center">{title}</div>
+            <div class="sf-card-body" style="text-align:center">{body}</div>
+        </div>""", unsafe_allow_html=True)
 
-# ─── Sidebar ─────────────────────────────────────────────────
-st.sidebar.title("🌿 SmartFarm AI")
-st.sidebar.markdown("Advanced Crop Health Diagnosis")
+# ── SIDEBAR ───────────────────────────────────────────────────
+st.sidebar.markdown("### 🌾 SmartFarm AI")
+st.sidebar.markdown("<span style='color:#475569;font-size:0.85rem'>AI-powered plant disease detection</span>", unsafe_allow_html=True)
 st.sidebar.divider()
-st.sidebar.markdown("""
-    > *"Precision in Diagnosis, Excellence in Harvest."*
-""")
+if st.sidebar.button("🩺 Go to Diagnosis Tool", use_container_width=True):
+    st.switch_page("pages/1_🩺_Diagnosis_Tool.py")
+st.sidebar.divider()
+st.sidebar.markdown("<span style='color:#334155;font-size:0.75rem'>Version 3.0 · Stable Release</span>", unsafe_allow_html=True)
 
 render_footer()
