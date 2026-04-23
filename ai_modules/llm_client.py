@@ -80,7 +80,7 @@ def _get_google_model():
 # ============================================================
 # 1️⃣ CNN → Grok Explanation
 # ============================================================
-def grok_disease_response(label: str, confidence: float, topk: list, user_crop: str = None) -> str:
+def grok_disease_response(label: str, confidence: float, topk: list, user_crop: str = None, weather_context: str = None) -> str:
     """Generate a natural-language explanation for CNN-predicted disease."""
     if not _HAS_GROK or not GROK_API_KEY:
         logger.info("Using mock AI CNN response (offline mode).")
@@ -91,7 +91,7 @@ def grok_disease_response(label: str, confidence: float, topk: list, user_crop: 
 
     try:
         client = Groq(api_key=GROK_API_KEY)
-        prompt = disease_explanation_prompt(label, confidence, user_crop)
+        prompt = disease_explanation_prompt(label, confidence, user_crop, weather_context)
         completion = client.chat.completions.create(
             model="llama-3.3-70b-versatile",
             messages=[{"role": "user", "content": prompt}],
@@ -184,9 +184,9 @@ def gemini_vision_response(image_path: str, user_crop: str = None) -> dict:
 # ============================================================
 # 3️⃣ Grok Refinement (Vision / RAG)
 # ============================================================
-def grok_refine_response(text: str, user_crop: str = None) -> str:
+def grok_refine_response(text: str, user_crop: str = None, weather_context: str = None) -> str:
     """Refine a given text into farmer-friendly explanation."""
-    prompt = refinement_prompt(text, user_crop)
+    prompt = refinement_prompt(text, user_crop, weather_context)
 
     if GROK_API_KEY and _HAS_GROK:
         try:

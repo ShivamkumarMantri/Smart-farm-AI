@@ -43,9 +43,10 @@ def _build_response(stage: str, message: str, meta: Optional[Dict[str, Any]] = N
         "timestamp": datetime.now().isoformat(),
     }
 
-def hybrid_predict(image_path: str, user_crop: Optional[str] = None, force_gemini: bool = False) -> Dict[str, Any]:
+def hybrid_predict(image_path: str, user_crop: Optional[str] = None, force_gemini: bool = False, weather_context: Optional[str] = None) -> Dict[str, Any]:
     """
     Main inference pipeline: CNN -> Cache -> Gemini (conditional) -> Grok (Final).
+    weather_context: optional weather summary string to pass to LLM for advice.
     """
     path = Path(image_path)
     if not path.exists():
@@ -94,7 +95,7 @@ def hybrid_predict(image_path: str, user_crop: Optional[str] = None, force_gemin
             
             # Stage is now definitely Gemini+Grok
             stage = "gemini_vision_grok"
-            final_output = grok_refine_response(desc, user_crop)
+            final_output = grok_refine_response(desc, user_crop, weather_context)
             
             # Store result in cache if confidence is okay
             if vision_result.get("confidence", 0) > VISION_CONF_THRESHOLD:
@@ -118,7 +119,7 @@ def hybrid_predict(image_path: str, user_crop: Optional[str] = None, force_gemin
     if not use_gemini or not final_output:
         # 4. Final Grok Output for CNN result
         try:
-            final_output = grok_disease_response(cnn_label, cnn_conf, topk, user_crop)
+            final_output = grok_disease_response(cnn_label, cnn_conf, topk, user_crop, weather_context)
             memory.store_diagnosis(str(path), cnn_label, cnn_conf, final_output)
         except Exception as e:
             logger.error(f"Final Grok stage failed: {e}")

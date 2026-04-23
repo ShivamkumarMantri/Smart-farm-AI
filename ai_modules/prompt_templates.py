@@ -10,17 +10,18 @@ Author: SmartFarm AI Team
 # ============================================================
 # 1️⃣ CNN → Gemini Text Prompt
 # ============================================================
-def disease_explanation_prompt(label: str, confidence: float, user_crop: str = None) -> str:
+def disease_explanation_prompt(label: str, confidence: float, user_crop: str = None, weather_context: str = None) -> str:
     """
     Build a detailed, structured instruction for Gemini/Grok to explain
     the CNN-detected disease in a specific farmer-friendly format.
     """
     crop_info = f"Crop: {user_crop}" if user_crop else "Auto-detect crop from label"
+    weather_section = f"\nCurrent Weather Conditions: {weather_context}\nIMPORTANT: Factor in the weather context when giving treatment timing advice." if weather_context else ""
     return f"""
 You are SmartFarm AI, an expert agricultural assistant.
 A plant image has been analyzed and identified as: {label}
 {crop_info}
-Confidence: {confidence * 100:.2f}%
+Confidence: {confidence * 100:.2f}%{weather_section}
 
 Please provide a detailed diagnosis report using the EXACT structure below:
 
@@ -60,15 +61,16 @@ def vision_analysis_prompt(crop_hint: str = None) -> str:
 # ============================================================
 # 3️⃣ Grok Refinement Prompt
 # ============================================================
-def refinement_prompt(text: str, user_crop: str = None) -> str:
+def refinement_prompt(text: str, user_crop: str = None, weather_context: str = None) -> str:
     """
     Build a prompt for Grok to refine a diagnosis into the 
     standardized structured farmer language.
     """
     crop_info = f"Crop: {user_crop}" if user_crop else "Identify crop from diagnosis data"
+    weather_section = f"\nCurrent Weather Conditions: {weather_context}\nIMPORTANT: Factor in the weather context when giving treatment timing advice." if weather_context else ""
     return f"""
 You are SmartFarm AI. Refine the following plant diagnosis into a structured, farmer-friendly report.
-{crop_info}
+{crop_info}{weather_section}
 Use the EXACT structure below:
 
 **[Disease Name]** is a disease that affects **[Crop Name]** plants, causing [brief description of impact]. It's usually caused by a combination of factors, including:
