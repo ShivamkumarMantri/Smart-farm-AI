@@ -1,0 +1,10 @@
+streamlit
+numpy
+pillow
+tensorflow
+chromadb
+python-dotenv
+google-generativeai
+fastapi
+uvicorn
+python-multipart

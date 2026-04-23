@@ -1,0 +1,25 @@
+__pycache__/
+*.py[cod]
+*$py.class
+.env
+.venv/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Node.js
+node_modules/
+dist/
+build/
+
+# Streamlit
+.streamlit/credentials.toml
+
+# macOS
+.DS_Store
+
+# Data/Uploads
+data/uploads/
+data/memory_db/
+logs/
