@@ -1,396 +1,408 @@
 import streamlit as st
 
 def inject_global_styles():
-    """Injects a world-class, unique design system with custom fonts and animations."""
+    """Professional, enterprise-grade design system."""
     st.markdown("""
         <style>
-        /* ══════════════════════════════════════════════════
-           FONTS: Space Grotesk (headings) + DM Sans (body)
-           ══════════════════════════════════════════════════ */
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap');
+        /* ══════════════════════════════════════════
+           FONTS
+           ══════════════════════════════════════════ */
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap');
 
         html, body, [class*="css"] {
-            font-family: 'DM Sans', sans-serif !important;
-            background-color: #040810 !important;
-            color: #CBD5E1 !important;
+            font-family: 'DM Sans', -apple-system, sans-serif !important;
         }
 
-        /* ══════════════════════════════════════════════════
-           ANIMATED BACKGROUND MESH
-           ══════════════════════════════════════════════════ */
+        /* ══════════════════════════════════════════
+           PROFESSIONAL BACKGROUND GRADIENT
+           ══════════════════════════════════════════ */
+        .stApp {
+            background: linear-gradient(135deg,
+                #060B14 0%,
+                #0A1628 30%,
+                #071220 60%,
+                #040C18 100%) !important;
+        }
         .main .block-container {
-            background: 
-                radial-gradient(ellipse 80% 50% at 20% 10%, rgba(17,178,123,0.06) 0%, transparent 60%),
-                radial-gradient(ellipse 60% 40% at 80% 80%, rgba(56,189,248,0.04) 0%, transparent 60%),
-                #040810 !important;
+            background:
+                radial-gradient(ellipse 900px 600px at 15% 0%,   rgba(16, 185, 129, 0.07) 0%, transparent 70%),
+                radial-gradient(ellipse 700px 500px at 85% 100%, rgba(14, 165, 233, 0.05) 0%, transparent 70%),
+                radial-gradient(ellipse 500px 400px at 50% 50%,  rgba(99,  102, 241, 0.03) 0%, transparent 70%),
+                transparent !important;
             padding-top: 0 !important;
+            max-width: 1100px !important;
         }
 
-        /* ══════════════════════════════════════════════════
-           HIDE DEFAULT STREAMLIT CHROME
-           ══════════════════════════════════════════════════ */
+        /* ══════════════════════════════════════════
+           HIDE STREAMLIT CHROME
+           ══════════════════════════════════════════ */
         #MainMenu { visibility: hidden; }
         header[data-testid="stHeader"] { display: none !important; }
         footer { display: none !important; }
 
-        /* ══════════════════════════════════════════════════
-           CUSTOM SCROLLBAR
-           ══════════════════════════════════════════════════ */
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-track { background: #040810; }
+        /* ══════════════════════════════════════════
+           SCROLLBAR
+           ══════════════════════════════════════════ */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #060B14; }
         ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, #11B27B, #0891B2);
-            border-radius: 10px;
+            background: linear-gradient(180deg, #10B981, #0EA5E9);
+            border-radius: 4px;
         }
 
-        /* ══════════════════════════════════════════════════
-           GLOBAL HEADER
-           ══════════════════════════════════════════════════ */
+        /* ══════════════════════════════════════════
+           PROFESSIONAL HEADER
+           ══════════════════════════════════════════ */
         .sf-header {
-            position: sticky;
-            top: 0;
-            z-index: 999;
-            width: 100%;
-            padding: 14px 36px;
-            background: rgba(4, 8, 16, 0.92);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border-bottom: 1px solid rgba(17, 178, 123, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 32px;
+            position: sticky; top: 0; z-index: 999;
+            padding: 0 40px;
+            height: 64px;
+            display: flex; align-items: center; justify-content: space-between;
+            background: rgba(6, 11, 20, 0.90);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            margin-bottom: 40px;
         }
-        .sf-header::after {
-            content: '';
-            position: absolute;
-            bottom: -1px;
-            left: 0; right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #11B27B, #38BDF8, transparent);
-            opacity: 0.6;
+        .sf-header-left { display: flex; align-items: center; gap: 12px; }
+        .sf-header-logo {
+            width: 32px; height: 32px; border-radius: 8px;
+            background: linear-gradient(135deg, #10B981, #059669);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1rem;
+            box-shadow: 0 0 16px rgba(16,185,129,0.3);
         }
         .sf-header-brand {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.45rem;
-            font-weight: 800;
-            background: linear-gradient(110deg, #11B27B 0%, #4ADE80 40%, #38BDF8 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -0.5px;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #F1F5F9;
+            letter-spacing: -0.3px;
+        }
+        .sf-header-divider {
+            width: 1px; height: 20px;
+            background: rgba(255,255,255,0.1);
         }
         .sf-header-tagline {
-            font-size: 0.75rem;
+            font-size: 0.78rem;
             color: #475569;
             font-weight: 400;
-            letter-spacing: 0.5px;
-            margin-top: 2px;
+            letter-spacing: 0.2px;
         }
+        .sf-header-right { display: flex; align-items: center; gap: 12px; }
         .sf-header-badge {
-            background: linear-gradient(135deg, rgba(17,178,123,0.15), rgba(56,189,248,0.1));
-            color: #4ADE80;
-            border: 1px solid rgba(17,178,123,0.35);
-            border-radius: 100px;
-            padding: 5px 16px;
-            font-size: 0.75rem;
+            display: inline-flex; align-items: center; gap: 6px;
+            background: rgba(16,185,129,0.08);
+            color: #34D399;
+            border: 1px solid rgba(16,185,129,0.2);
+            border-radius: 6px;
+            padding: 5px 12px;
+            font-size: 0.72rem;
             font-weight: 600;
             font-family: 'DM Sans', sans-serif;
-            letter-spacing: 0.3px;
-            box-shadow: 0 0 12px rgba(17,178,123,0.15);
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+        }
+        .sf-status-dot {
+            width: 6px; height: 6px; border-radius: 50%;
+            background: #10B981;
+            box-shadow: 0 0 6px #10B981;
+            animation: pulse-dot 2s infinite;
+        }
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
         }
 
-        /* ══════════════════════════════════════════════════
-           GLOBAL FOOTER
-           ══════════════════════════════════════════════════ */
+        /* ══════════════════════════════════════════
+           PROFESSIONAL FOOTER
+           ══════════════════════════════════════════ */
         .sf-footer {
-            margin-top: 72px;
-            padding: 32px 40px;
-            background: rgba(4, 8, 16, 0.8);
-            backdrop-filter: blur(20px);
-            border-top: 1px solid transparent;
-            background-clip: padding-box;
-            position: relative;
-            text-align: center;
+            margin-top: 80px;
+            padding: 36px 40px 28px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 20px;
+            align-items: center;
         }
-        .sf-footer::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #11B27B 30%, #38BDF8 70%, transparent);
+        .sf-footer-left {}
+        .sf-footer-brand-row {
+            display: flex; align-items: center; gap: 8px; margin-bottom: 6px;
         }
-        .sf-footer-brand {
+        .sf-footer-brand-name {
             font-family: 'Space Grotesk', sans-serif;
-            font-weight: 800;
-            font-size: 1.1rem;
-            background: linear-gradient(110deg, #11B27B, #38BDF8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: 0.95rem; font-weight: 700; color: #E2E8F0;
         }
-        .sf-footer p { margin: 4px 0; font-size: 0.8rem; color: #334155; }
-        .sf-footer .sf-tech { color: #11B27B; font-weight: 600; }
+        .sf-footer-copy {
+            font-size: 0.76rem; color: #334155; line-height: 1.6;
+        }
+        .sf-footer-stack {
+            font-size: 0.73rem; color: #1E3A4A; margin-top: 2px;
+        }
+        .sf-footer-stack span { color: #0E7A5A; font-weight: 500; }
+        .sf-footer-right {}
         .sf-footer-links {
-            margin-top: 12px;
-            display: flex;
-            justify-content: center;
-            gap: 28px;
+            display: flex; gap: 20px; justify-content: flex-end;
         }
         .sf-footer-links a {
-            color: #475569;
-            text-decoration: none;
-            font-size: 0.78rem;
-            font-weight: 500;
-            transition: color 0.25s, text-shadow 0.25s;
+            color: #334155; text-decoration: none;
+            font-size: 0.78rem; font-weight: 500;
+            transition: color 0.2s;
         }
-        .sf-footer-links a:hover {
-            color: #4ADE80;
-            text-shadow: 0 0 8px rgba(74,222,128,0.4);
-        }
+        .sf-footer-links a:hover { color: #34D399; }
 
-        /* ══════════════════════════════════════════════════
+        /* ══════════════════════════════════════════
            TYPOGRAPHY
-           ══════════════════════════════════════════════════ */
-        h1, h2, h3, h4, h5 {
+           ══════════════════════════════════════════ */
+        h1, h2, h3, h4 {
             font-family: 'Space Grotesk', sans-serif !important;
         }
         h1 {
-            background: linear-gradient(110deg, #11B27B 0%, #4ADE80 50%, #38BDF8 100%);
+            font-size: 2.4rem !important;
+            font-weight: 800 !important;
+            letter-spacing: -1.5px !important;
+            line-height: 1.15 !important;
+            background: linear-gradient(135deg, #E2E8F0 0%, #94A3B8 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            font-weight: 800 !important;
-            letter-spacing: -1px !important;
         }
         h2 {
-            color: #E2E8F0 !important;
+            font-size: 1.5rem !important;
             font-weight: 700 !important;
             letter-spacing: -0.5px !important;
+            color: #CBD5E1 !important;
         }
         h3 {
-            color: #4ADE80 !important;
+            font-size: 1.05rem !important;
             font-weight: 600 !important;
+            color: #94A3B8 !important;
         }
-        p { line-height: 1.7; }
+        p, li, label { font-family: 'DM Sans', sans-serif !important; }
 
-        /* ══════════════════════════════════════════════════
-           PREMIUM BUTTONS
-           ══════════════════════════════════════════════════ */
+        /* ══════════════════════════════════════════
+           ACCENT / LABEL OVERRIDES (keep green for data)
+           ══════════════════════════════════════════ */
+        .accent-green { color: #10B981 !important; }
+        .accent-blue  { color: #0EA5E9 !important; }
+
+        /* ══════════════════════════════════════════
+           BUTTONS
+           ══════════════════════════════════════════ */
         div.stButton > button {
             font-family: 'DM Sans', sans-serif !important;
             font-weight: 600 !important;
-            letter-spacing: 0.3px;
+            font-size: 0.88rem !important;
+            letter-spacing: 0.2px !important;
             border: none !important;
-            border-radius: 14px !important;
-            background: linear-gradient(135deg, #11B27B 0%, #0D8F61 100%) !important;
-            color: white !important;
-            box-shadow: 0 4px 20px rgba(17, 178, 123, 0.35), inset 0 1px 0 rgba(255,255,255,0.15) !important;
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
-            position: relative;
-            overflow: hidden;
-        }
-        div.stButton > button::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-            transition: left 0.5s ease;
+            border-radius: 10px !important;
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%) !important;
+            color: #fff !important;
+            padding: 10px 22px !important;
+            box-shadow: 0 2px 12px rgba(16,185,129,0.25), inset 0 1px 0 rgba(255,255,255,0.12) !important;
+            transition: all 0.25s ease !important;
         }
         div.stButton > button:hover {
-            transform: translateY(-3px) scale(1.01) !important;
-            box-shadow: 0 8px 30px rgba(17, 178, 123, 0.5), 0 0 20px rgba(17,178,123,0.3) !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 6px 24px rgba(16,185,129,0.4) !important;
         }
-        div.stButton > button:hover::before { left: 100%; }
+        div.stButton > button:active {
+            transform: translateY(0px) !important;
+        }
 
-        /* ══════════════════════════════════════════════════
-           GLASS CARDS (Enhanced with Glow)
-           ══════════════════════════════════════════════════ */
-        .glass-card {
-            background: linear-gradient(135deg, rgba(17,25,35,0.8) 0%, rgba(10,15,20,0.9) 100%);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(17, 178, 123, 0.12);
-            border-radius: 20px;
-            padding: 28px;
-            margin-bottom: 20px;
-            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
-                        box-shadow 0.35s ease,
-                        border-color 0.35s ease;
-            position: relative;
-            overflow: hidden;
+        /* ══════════════════════════════════════════
+           DOWNLOAD BUTTON
+           ══════════════════════════════════════════ */
+        div[data-testid="stDownloadButton"] > button {
+            font-family: 'DM Sans', sans-serif !important;
+            font-weight: 600 !important;
+            border-radius: 10px !important;
+            border: 1px solid rgba(16,185,129,0.3) !important;
+            background: transparent !important;
+            color: #34D399 !important;
+            transition: all 0.25s ease !important;
         }
-        .glass-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 2px;
-            background: linear-gradient(90deg, transparent, #11B27B, transparent);
-            opacity: 0;
-            transition: opacity 0.35s ease;
+        div[data-testid="stDownloadButton"] > button:hover {
+            background: rgba(16,185,129,0.08) !important;
+            border-color: rgba(16,185,129,0.5) !important;
+        }
+
+        /* ══════════════════════════════════════════
+           GLASS CARDS
+           ══════════════════════════════════════════ */
+        .glass-card {
+            background: rgba(15, 23, 36, 0.7);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px;
+            padding: 28px 32px;
+            margin-bottom: 16px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
         }
         .glass-card:hover {
-            transform: translateY(-6px) scale(1.01);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 30px rgba(17,178,123,0.1);
-            border-color: rgba(17, 178, 123, 0.3);
+            border-color: rgba(16,185,129,0.2);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(16,185,129,0.08);
+            transform: translateY(-3px);
         }
-        .glass-card:hover::before { opacity: 1; }
+        .glass-card h3 {
+            color: #E2E8F0 !important;
+            font-size: 1rem !important;
+            font-weight: 600 !important;
+            margin-bottom: 8px !important;
+        }
+        .glass-card p { color: #64748B; font-size: 0.88rem; line-height: 1.65; }
 
-        /* ══════════════════════════════════════════════════
+        /* ══════════════════════════════════════════
            FILE UPLOADER
-           ══════════════════════════════════════════════════ */
+           ══════════════════════════════════════════ */
         div[data-testid="stFileUploader"] {
-            border: 2px dashed rgba(17,178,123,0.4) !important;
-            border-radius: 18px !important;
+            border: 1.5px dashed rgba(16,185,129,0.3) !important;
+            border-radius: 14px !important;
             padding: 2rem !important;
-            background: radial-gradient(ellipse at center, rgba(17,178,123,0.04) 0%, transparent 70%) !important;
-            transition: all 0.3s ease !important;
+            background: rgba(16,185,129,0.02) !important;
+            transition: all 0.25s ease !important;
         }
         div[data-testid="stFileUploader"]:hover {
-            border-color: rgba(74,222,128,0.7) !important;
-            background: radial-gradient(ellipse at center, rgba(17,178,123,0.08) 0%, transparent 70%) !important;
-            box-shadow: 0 0 30px rgba(17,178,123,0.1) !important;
+            border-color: rgba(16,185,129,0.5) !important;
+            background: rgba(16,185,129,0.04) !important;
         }
 
-        /* ══════════════════════════════════════════════════
-           INPUTS & SELECTS
-           ══════════════════════════════════════════════════ */
+        /* ══════════════════════════════════════════
+           INPUTS & SELECTBOX
+           ══════════════════════════════════════════ */
         .stTextInput > div > div > input,
         .stSelectbox > div > div {
             font-family: 'DM Sans', sans-serif !important;
-            background: rgba(17,25,35,0.7) !important;
-            border: 1px solid rgba(17,178,123,0.3) !important;
-            border-radius: 12px !important;
+            background: rgba(15,23,36,0.8) !important;
+            border: 1px solid rgba(255,255,255,0.1) !important;
+            border-radius: 10px !important;
             color: #E2E8F0 !important;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease !important;
+            transition: border-color 0.25s, box-shadow 0.25s !important;
         }
-        .stTextInput > div > div > input:focus,
-        .stSelectbox > div > div:focus-within {
-            border-color: rgba(74,222,128,0.6) !important;
-            box-shadow: 0 0 0 3px rgba(17,178,123,0.12) !important;
+        .stTextInput > div > div > input:focus {
+            border-color: rgba(16,185,129,0.5) !important;
+            box-shadow: 0 0 0 3px rgba(16,185,129,0.1) !important;
         }
 
-        /* ══════════════════════════════════════════════════
+        /* ══════════════════════════════════════════
            SIDEBAR
-           ══════════════════════════════════════════════════ */
+           ══════════════════════════════════════════ */
         section[data-testid="stSidebar"] {
-            background: linear-gradient(180deg, #040810 0%, #060D18 100%) !important;
-            border-right: 1px solid rgba(17, 178, 123, 0.1) !important;
+            background: #060B14 !important;
+            border-right: 1px solid rgba(255,255,255,0.05) !important;
         }
         section[data-testid="stSidebar"] h1,
         section[data-testid="stSidebar"] h2,
         section[data-testid="stSidebar"] h3 {
             font-family: 'Space Grotesk', sans-serif !important;
+            color: #CBD5E1 !important;
         }
 
-        /* ══════════════════════════════════════════════════
+        /* ══════════════════════════════════════════
            METRICS
-           ══════════════════════════════════════════════════ */
+           ══════════════════════════════════════════ */
         [data-testid="stMetric"] {
-            background: linear-gradient(135deg, rgba(17,25,35,0.9), rgba(10,15,20,0.95)) !important;
-            border: 1px solid rgba(17,178,123,0.15) !important;
-            border-radius: 16px !important;
-            padding: 18px !important;
-            transition: border-color 0.3s, box-shadow 0.3s !important;
+            background: rgba(15,23,36,0.6) !important;
+            border: 1px solid rgba(255,255,255,0.07) !important;
+            border-radius: 14px !important;
+            padding: 20px !important;
+            transition: border-color 0.25s, box-shadow 0.25s !important;
         }
         [data-testid="stMetric"]:hover {
-            border-color: rgba(17,178,123,0.35) !important;
-            box-shadow: 0 0 20px rgba(17,178,123,0.1) !important;
+            border-color: rgba(16,185,129,0.2) !important;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3) !important;
         }
         [data-testid="stMetricLabel"] {
             font-family: 'DM Sans', sans-serif !important;
-            font-size: 0.8rem !important;
-            color: #64748B !important;
-            letter-spacing: 0.5px !important;
+            font-size: 0.75rem !important;
+            color: #475569 !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.6px !important;
         }
         [data-testid="stMetricValue"] {
             font-family: 'Space Grotesk', sans-serif !important;
             font-weight: 700 !important;
-            color: #4ADE80 !important;
+            color: #E2E8F0 !important;
+            font-size: 1.6rem !important;
+        }
+        [data-testid="stMetricDelta"] {
+            font-family: 'DM Sans', sans-serif !important;
+            font-size: 0.78rem !important;
         }
 
-        /* ══════════════════════════════════════════════════
+        /* ══════════════════════════════════════════
            EXPANDERS
-           ══════════════════════════════════════════════════ */
+           ══════════════════════════════════════════ */
         [data-testid="stExpander"] {
-            background: rgba(17,25,35,0.5) !important;
-            border: 1px solid rgba(17,178,123,0.1) !important;
-            border-radius: 14px !important;
-            transition: border-color 0.3s !important;
+            background: rgba(15,23,36,0.5) !important;
+            border: 1px solid rgba(255,255,255,0.06) !important;
+            border-radius: 12px !important;
+            transition: border-color 0.25s !important;
         }
         [data-testid="stExpander"]:hover {
-            border-color: rgba(17,178,123,0.3) !important;
+            border-color: rgba(16,185,129,0.2) !important;
+        }
+        [data-testid="stExpander"] summary {
+            font-family: 'DM Sans', sans-serif !important;
+            font-weight: 500 !important;
+            color: #94A3B8 !important;
         }
 
-        /* ══════════════════════════════════════════════════
-           SPINNER
-           ══════════════════════════════════════════════════ */
-        .stSpinner > div > div {
-            border-top-color: #4ADE80 !important;
-        }
-
-        /* ══════════════════════════════════════════════════
-           BADGE
-           ══════════════════════════════════════════════════ */
-        .badge {
-            background: rgba(17, 178, 123, 0.15);
-            color: #4ADE80;
-            padding: 4px 14px;
-            border-radius: 100px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            border: 1px solid rgba(17, 178, 123, 0.3);
-            display: inline-block;
-            font-family: 'DM Sans', sans-serif;
-        }
-
-        /* ══════════════════════════════════════════════════
-           PROGRESS BAR
-           ══════════════════════════════════════════════════ */
+        /* ══════════════════════════════════════════
+           PROGRESS
+           ══════════════════════════════════════════ */
         .stProgress > div > div > div > div {
-            background: linear-gradient(90deg, #11B27B, #4ADE80) !important;
-            border-radius: 100px !important;
+            background: linear-gradient(90deg, #10B981, #34D399) !important;
+            border-radius: 4px !important;
         }
         .stProgress > div > div > div {
-            border-radius: 100px !important;
-            background: rgba(17,178,123,0.1) !important;
+            background: rgba(16,185,129,0.08) !important;
+            border-radius: 4px !important;
         }
 
-        /* ══════════════════════════════════════════════════
+        /* ══════════════════════════════════════════
            DIVIDER
-           ══════════════════════════════════════════════════ */
+           ══════════════════════════════════════════ */
         hr {
             border: none !important;
             height: 1px !important;
-            background: linear-gradient(90deg, transparent, rgba(17,178,123,0.3), transparent) !important;
-            margin: 24px 0 !important;
+            background: rgba(255,255,255,0.06) !important;
+            margin: 28px 0 !important;
         }
 
-        /* ══════════════════════════════════════════════════
-           SUCCESS / INFO / WARNING ALERTS
-           ══════════════════════════════════════════════════ */
+        /* ══════════════════════════════════════════
+           ALERTS
+           ══════════════════════════════════════════ */
         [data-testid="stAlert"] {
-            border-radius: 14px !important;
+            border-radius: 12px !important;
+            font-family: 'DM Sans', sans-serif !important;
+            border-width: 1px !important;
+        }
+        div.element-container:has([data-testid="stAlert"]) {
             font-family: 'DM Sans', sans-serif !important;
         }
 
-        /* ══════════════════════════════════════════════════
-           DOWNLOAD BUTTON
-           ══════════════════════════════════════════════════ */
-        div[data-testid="stDownloadButton"] > button {
-            font-family: 'DM Sans', sans-serif !important;
-            font-weight: 600 !important;
-            border-radius: 14px !important;
-            border: 1px solid rgba(17,178,123,0.4) !important;
-            background: rgba(17,178,123,0.1) !important;
-            color: #4ADE80 !important;
-            transition: all 0.3s ease !important;
+        /* ══════════════════════════════════════════
+           SPINNER
+           ══════════════════════════════════════════ */
+        .stSpinner > div > div {
+            border-top-color: #10B981 !important;
         }
-        div[data-testid="stDownloadButton"] > button:hover {
-            background: rgba(17,178,123,0.2) !important;
-            border-color: #4ADE80 !important;
-            box-shadow: 0 0 15px rgba(17,178,123,0.25) !important;
+
+        /* ══════════════════════════════════════════
+           BADGE
+           ══════════════════════════════════════════ */
+        .badge {
+            background: rgba(16,185,129,0.1);
+            color: #34D399;
+            padding: 3px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border: 1px solid rgba(16,185,129,0.2);
+            font-family: 'DM Sans', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
         }
         </style>
     """, unsafe_allow_html=True)
@@ -399,11 +411,18 @@ def inject_global_styles():
 def render_header():
     st.markdown("""
         <div class="sf-header">
-            <div>
-                <div class="sf-header-brand">🌾 SmartFarm AI</div>
-                <div class="sf-header-tagline">Advanced Pathological Intelligence · Sustainable Agriculture</div>
+            <div class="sf-header-left">
+                <div class="sf-header-logo">🌾</div>
+                <div class="sf-header-brand">SmartFarm AI</div>
+                <div class="sf-header-divider"></div>
+                <div class="sf-header-tagline">Pathological Intelligence for Agriculture</div>
             </div>
-            <div class="sf-header-badge">🟢&nbsp; System Operational</div>
+            <div class="sf-header-right">
+                <div class="sf-header-badge">
+                    <div class="sf-status-dot"></div>
+                    All Systems Operational
+                </div>
+            </div>
         </div>
     """, unsafe_allow_html=True)
 
@@ -411,14 +430,20 @@ def render_header():
 def render_footer():
     st.markdown("""
         <div class="sf-footer">
-            <div class="sf-footer-brand">🌾 SmartFarm AI</div>
-            <p style="margin-top:6px;">2025–26 &nbsp;·&nbsp; Developed by <span class="sf-tech">Team SmartFarm</span></p>
-            <p>Powered by <span class="sf-tech">CNN</span> · <span class="sf-tech">Gemini Vision</span> · <span class="sf-tech">Grok LLM</span> · <span class="sf-tech">ChromaDB</span></p>
-            <div class="sf-footer-links">
-                <a href="#">🏠 Home</a>
-                <a href="#">🩺 Diagnosis</a>
-                <a href="#">📊 Analytics</a>
-                <a href="#">📖 About</a>
+            <div class="sf-footer-left">
+                <div class="sf-footer-brand-row">
+                    <div class="sf-footer-brand-name">🌾 SmartFarm AI</div>
+                </div>
+                <div class="sf-footer-copy">© 2025–26 Team SmartFarm. Built for sustainable agriculture.</div>
+                <div class="sf-footer-stack">Powered by <span>CNN</span> · <span>Gemini Vision</span> · <span>Grok LLM</span> · <span>ChromaDB</span></div>
+            </div>
+            <div class="sf-footer-right">
+                <div class="sf-footer-links">
+                    <a href="#">Home</a>
+                    <a href="#">Diagnosis</a>
+                    <a href="#">Analytics</a>
+                    <a href="#">About</a>
+                </div>
             </div>
         </div>
     """, unsafe_allow_html=True)
